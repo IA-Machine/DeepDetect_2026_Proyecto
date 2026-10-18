@@ -1,0 +1,6 @@
+streamlit>=1.39,<2
+torch>=2.3,<3
+torchvision>=0.18,<1
+timm>=1.0,<2
+Pillow>=10.3,<13
+google-genai>=1.0,<2
