@@ -1,10 +1,10 @@
-# IA Detect 2026 | DeepDetect 2026
+# DeepDetect 2026
 
 **Asignatura:** IA Generativa para la Gestión Industrial  
 **Módulo:** II, clasificación de imágenes  
 **Integrantes:** Catalina Cornejo, Hellen Quiñones y Gustavo Sánchez  
 **Repositorio GitHub:** [DeepDetect_2026_Proyecto](https://github.com/hellenelizabethqm-netizen/DeepDetect_2026_Proyecto/tree/main)  
-**Aplicación web pública:** [Enlace pendiente de incorporar]
+**Aplicación web pública:** (https://deepdetect2026-gnu6pnqzy6yztfrxfdfjkl.streamlit.app/)
 
 ## 1. Descripción y propósito
 
