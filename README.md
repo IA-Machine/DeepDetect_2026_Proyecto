@@ -42,7 +42,7 @@ El conjunto de entrenamiento se utilizó para ajustar los parámetros de los mod
 
 ## 4. Modelos y criterios de selección
 
-Se compararon **EfficientNet-B0** y **ResNet-50**, dos arquitecturas preentrenadas implementadas con `timm` y adaptadas mediante *transfer learning*. EfficientNet-B0 se consideró por su menor costo computacional, mientras que ResNet-50 permitió contrastar el desempeño con una red residual ampliamente utilizada en clasificación de imágenes.
+Se compararon **EfficientNet-B0** y **ResNet-50**, dos arquitecturas preentrenadas implementadas con `timm` y adaptadas mediante *transfer learning*. EfficientNet-B0 se consideró por su menor costo computacional (EfficientNet-B0 tiene aproximadamente 5,3 millones de parámetros y ResNet-50 alrededor de 25,6 millones.), mientras que ResNet-50 permitió contrastar el desempeño con una red residual ampliamente utilizada en clasificación de imágenes.
 
 Ambos modelos completaron seis épocas de entrenamiento de la nueva capa clasificadora y tres épocas de ajuste fino, utilizando `BCEWithLogitsLoss` y AdamW. Las etiquetas se codificaron como `fake = 0` y `real = 1`, de manera que la salida sigmoide corresponde a `P(real)` y la puntuación para la clase sintética se obtiene como `P(fake) = 1 − P(real)`.
 
@@ -69,13 +69,9 @@ Las curvas de aprendizaje y las matrices de confusión incluidas en el notebook 
 
 ## 6. Aplicación web e integración de IA generativa
 
-La aplicación **IA Detect 2026** se desarrolló con **Streamlit** para permitir la carga de imágenes y mostrar la clase estimada, las puntuaciones de `fake` y `real`, el desempeño global del modelo y advertencias cuando una predicción resulta cercana al umbral seleccionado. Para las nuevas imágenes, se utiliza ResNet-50 con los parámetros y el preprocesamiento exportados desde el notebook.
+La aplicación se encuentra publicada mediante **Streamlit Community Cloud**, permitiendo acceder a sus funcionalidades desde un navegador web. Su implementación integra el modelo ResNet-50 para clasificar imágenes y Google Gemini para generar recomendaciones de verificación a partir de los resultados obtenidos.
 
-La interfaz incorpora un botón para solicitar recomendaciones a **Google Gemini** a partir de la clase y las puntuaciones calculadas. El modelo de lenguaje recibe estos antecedentes como texto, sin recibir la imagen, y propone acciones de verificación como revisar la fuente original, contrastar el contexto y utilizar herramientas de búsqueda inversa, evitando presentar una clasificación automática como certeza.
-
-La conexión con Gemini se probó satisfactoriamente desde Google Colab y también se inició una versión temporal de Streamlit en ese entorno. Para el despliegue definitivo será necesario verificar el funcionamiento completo de la aplicación desde su enlace público y mantener `GEMINI_API_KEY` en los secretos de la plataforma, sin exponerla en GitHub.
-
-**Enlace público de la aplicación:** [Pendiente de incorporar y verificar].
+**Aplicación web:** https://deepdetect2026-gnu6pnqzy6yztfrxfdfjkl.streamlit.app/
 
 ## 7. Ejecución y reproducibilidad
 
@@ -95,6 +91,8 @@ La clave de Gemini se configura como variable de entorno o secreto de Streamlit.
 El desempeño obtenido describe el comportamiento del modelo frente a la distribución de imágenes contenida en Deep Detect Dataset 2026, pero no garantiza resultados equivalentes ante generadores distintos, fotografías de otras procedencias o nuevas formas de manipulación. Además, el redimensionamiento y la compresión pueden modificar señales visuales relevantes, mientras que el agrupamiento por pHash no identifica necesariamente todas las imágenes relacionadas por una misma escena o fuente.
 
 Las puntuaciones mostradas no son una certificación de autenticidad ni probabilidades calibradas de verdad factual. Por esta razón, el sistema mantiene un enfoque educativo, recomienda la revisión humana y no debe utilizarse de manera aislada para formular acusaciones o fundamentar decisiones legales, económicas o disciplinarias.
+
+Aunque se seleccionó un dataset reciente, durante las pruebas con imágenes generadas en octubre de 2026 se observaron algunas dificultades de clasificación lo que sugiere que la evolución de los modelos generativos puede afectar la capacidad de detección de imágenes sintéticas y destaca la importancia de actualizar periódicamente los datos de entrenamiento. Sin embargo, estas observaciones requieren evaluaciones más amplias para determinar su efecto sobre el desempeño general del clasificador.
 
 ## 9. Uso de inteligencia artificial en el desarrollo
 
