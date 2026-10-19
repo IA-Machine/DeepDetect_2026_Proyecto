@@ -1,0 +1,23 @@
+{
+  "architecture": "resnet50",
+  "class_names": [
+    "fake",
+    "real"
+  ],
+  "image_size": 224,
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "threshold_real": 0.76,
+  "seed": 2026,
+  "dataset": "ucimachinelearning/deep-detect-dataset-2026",
+  "training_split": "70/15/15 por grupo pHash",
+  "fp16_export": false
+}
