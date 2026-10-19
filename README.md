@@ -4,6 +4,7 @@
 **Módulo:** II, clasificación de imágenes  
 **Integrantes:** Catalina Cornejo, Hellen Quiñones y Gustavo Sánchez  
 **Repositorio GitHub:** [DeepDetect_2026_Proyecto](https://github.com/IA-Machine/DeepDetect_2026_Proyecto)
+
 **Aplicación web pública:** (https://deepdetect2026-gnu6pnqzy6yztfrxfdfjkl.streamlit.app/)
 
 ## 1. Descripción y propósito
