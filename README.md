@@ -38,7 +38,7 @@ Se realizó una separación estratificada con semilla **2026**, utilizando como 
 | Validación | 1.561 | 1.680 | 3.241 | 15,02 % |
 | Prueba | 1.560 | 1.678 | 3.238 | 15,01 % |
 
-El conjunto de entrenamiento se utilizó para ajustar los parámetros de los modelos, mientras que validación permitió seleccionar la arquitectura y el umbral de decisión. Por su parte, prueba se reservó para la evaluación final, sin intervenir en la selección, favoreciendo una comparación más objetiva y reproducible.
+El conjunto de entrenamiento se utilizó para ajustar los parámetros de los modelos, mientras que la validación permitió seleccionar la arquitectura y el umbral de decisión. Por su parte, el conjunto de prueba se reservó para la evaluación final, sin intervenir en la selección, favoreciendo una comparación más objetiva y reproducible.
 
 ## 4. Modelos y criterios de selección
 
