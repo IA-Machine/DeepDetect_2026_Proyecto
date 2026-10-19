@@ -3,12 +3,12 @@
 **Asignatura:** IA Generativa para la Gestión Industrial  
 **Módulo:** II, clasificación de imágenes  
 **Integrantes:** Catalina Cornejo, Hellen Quiñones y Gustavo Sánchez  
-**Repositorio GitHub:** [DeepDetect_2026_Proyecto](https://github.com/hellenelizabethqm-netizen/DeepDetect_2026_Proyecto/tree/main)  
+**Repositorio GitHub:** [DeepDetect_2026_Proyecto](https://github.com/IA-Machine/DeepDetect_2026_Proyecto)
 **Aplicación web pública:** (https://deepdetect2026-gnu6pnqzy6yztfrxfdfjkl.streamlit.app/)
 
 ## 1. Descripción y propósito
 
-IA Detect 2026 es una aplicación educativa que apoya la identificación de imágenes faciales posiblemente generadas o manipuladas mediante inteligencia artificial. El proyecto responde a los riesgos de suplantación visual y desinformación mediante un clasificador binario que distingue entre las categorías `fake` y `real`, presenta la puntuación del modelo y ofrece recomendaciones para revisar el origen del contenido.
+Deep Detect 2026 es una aplicación educativa que apoya la identificación de imágenes faciales posiblemente generadas o manipuladas mediante inteligencia artificial. El proyecto responde a los riesgos de suplantación visual y desinformación mediante un clasificador binario que distingue entre las categorías `fake` y `real`, presenta la puntuación del modelo y ofrece recomendaciones para revisar el origen del contenido.
 
 Su finalidad es facilitar una primera evaluación de las imágenes, sin reemplazar la verificación humana ni presentar las predicciones como pruebas definitivas de autenticidad.
 
@@ -42,7 +42,7 @@ El conjunto de entrenamiento se utilizó para ajustar los parámetros de los mod
 
 ## 4. Modelos y criterios de selección
 
-Se compararon **EfficientNet-B0** y **ResNet-50**, dos arquitecturas preentrenadas implementadas con `timm` y adaptadas mediante *transfer learning*. EfficientNet-B0 se consideró por su menor costo computacional (EfficientNet-B0 tiene aproximadamente 5,3 millones de parámetros y ResNet-50 alrededor de 25,6 millones.), mientras que ResNet-50 permitió contrastar el desempeño con una red residual ampliamente utilizada en clasificación de imágenes.
+Se compararon **EfficientNet-B0** y **ResNet-50**, dos arquitecturas preentrenadas implementadas con `timm` y adaptadas mediante *transfer learning*. EfficientNet-B0 se consideró por su menor costo computacional (EfficientNet-B0 tiene aproximadamente 5,3 millones de parámetros y ResNet-50 alrededor de 25,6 millones), mientras que ResNet-50 permitió contrastar el desempeño con una red residual ampliamente utilizada en clasificación de imágenes.
 
 Ambos modelos completaron seis épocas de entrenamiento de la nueva capa clasificadora y tres épocas de ajuste fino, utilizando `BCEWithLogitsLoss` y AdamW. Las etiquetas se codificaron como `fake = 0` y `real = 1`, de manera que la salida sigmoide corresponde a `P(real)` y la puntuación para la clase sintética se obtiene como `P(fake) = 1 − P(real)`.
 
