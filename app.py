@@ -17,7 +17,7 @@ from torchvision import transforms
 # =========================================================
 
 st.set_page_config(
-    page_title="IA Detect 2026",
+    page_title="DeepDetect 2026",
     page_icon="🔎",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -90,55 +90,200 @@ st.markdown("""
         margin-top: 4px;
     }
 
-    /* Encabezado principal */
+    /* Encabezado principal: propósito claro y referencia visual */
     .hero {
-        background: linear-gradient(
-            125deg,
-            #152344 0%,
-            #101B34 65%,
-            #172952 100%
-        );
-        border: 1px solid #2B416D;
+        background: linear-gradient(125deg, #162747 0%, #101B34 58%, #182B51 100%);
+        border: 1px solid #344B77;
         border-radius: 22px;
-        padding: 35px 38px;
+        padding: 34px 36px;
         margin-bottom: 25px;
+        box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
+        overflow: hidden;
+    }
+
+    .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.85fr);
+        gap: 30px;
+        align-items: center;
     }
 
     .eyebrow {
-        color: #96B3FF;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        margin-bottom: 12px;
+        color: #A5BDFF;
+        font-size: 11px;
+        font-weight: 750;
+        letter-spacing: 1.8px;
+        margin-bottom: 14px;
     }
 
     .hero-title {
         color: #FFFFFF;
-        font-size: clamp(30px, 4vw, 47px);
+        font-size: clamp(29px, 3.7vw, 44px);
         font-weight: 800;
-        letter-spacing: -1.5px;
-        line-height: 1.15;
-        margin-bottom: 14px;
+        letter-spacing: -1.3px;
+        line-height: 1.16;
+        margin-bottom: 16px;
     }
 
     .hero-description {
-        color: #B9C8E1;
-        font-size: 16px;
-        max-width: 740px;
-        line-height: 1.65;
+        color: #C1CDE2;
+        font-size: 15px;
+        line-height: 1.7;
         margin-bottom: 20px;
+        max-width: 640px;
     }
 
     .tag {
         display: inline-block;
-        background: #22385F;
-        border: 1px solid #334C7F;
+        background: #233A60;
+        border: 1px solid #3D5687;
         border-radius: 8px;
-        padding: 7px 12px;
-        color: #BED3FF;
+        padding: 7px 11px;
+        color: #D7E4FF;
         font-size: 12px;
         margin-right: 7px;
-        margin-bottom: 5px;
+        margin-bottom: 7px;
+    }
+
+    /* Gráfico ilustrativo: NO representa una detección realizada */
+    .hero-visual {
+        background: linear-gradient(165deg, #22385D 0%, #121E37 100%);
+        border: 1px solid #46649C;
+        border-radius: 20px;
+        padding: 18px;
+        position: relative;
+        min-width: 0;
+    }
+
+    .visual-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        color: #BCD0F5;
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    .visual-top strong {
+        color: #9EBBFA;
+        font-weight: 700;
+    }
+
+    .face-frame {
+        height: 190px;
+        border: 1px solid rgba(138, 171, 238, 0.35);
+        border-radius: 15px;
+        background:
+            linear-gradient(transparent 98%, rgba(137, 170, 252, .10) 99%),
+            linear-gradient(90deg, transparent 98%, rgba(137, 170, 252, .10) 99%),
+            radial-gradient(ellipse at center, #2B426C 0%, #172643 67%);
+        background-size: 100% 25px, 25px 100%, auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .face-illustration {
+        position: relative;
+        width: 128px;
+        height: 154px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .face-head {
+        width: 67px;
+        height: 80px;
+        border-radius: 44% 44% 46% 46%;
+        border: 2px solid #A9C6FF;
+        background: linear-gradient(160deg, #789AD0, #415F9B);
+        position: relative;
+        z-index: 2;
+        box-shadow: inset -9px -7px 13px rgba(9, 18, 38, .28);
+    }
+
+    .face-head::before,
+    .face-head::after {
+        content: "";
+        position: absolute;
+        top: 35px;
+        height: 3px;
+        width: 9px;
+        border-radius: 3px;
+        background: #182C50;
+    }
+    .face-head::before {left: 15px;}
+    .face-head::after {right: 15px;}
+
+    .face-shoulders {
+        height: 57px;
+        width: 121px;
+        margin-top: -4px;
+        border: 2px solid #A9C6FF;
+        border-bottom: 0;
+        border-radius: 62px 62px 0 0;
+        background: linear-gradient(160deg, #587EC0, #293E68);
+    }
+
+    .frame-corner {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-color: #A9C6FF;
+        border-style: solid;
+    }
+    .corner-tl {top: 13px; left: 13px; border-width: 2px 0 0 2px;}
+    .corner-tr {top: 13px; right: 13px; border-width: 2px 2px 0 0;}
+    .corner-bl {bottom: 13px; left: 13px; border-width: 0 0 2px 2px;}
+    .corner-br {bottom: 13px; right: 13px; border-width: 0 2px 2px 0;}
+
+    .scan-line {
+        position: absolute;
+        top: 49%;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #8CE8FF, transparent);
+        box-shadow: 0 0 14px rgba(140, 232, 255, .75);
+        z-index: 3;
+    }
+
+    .visual-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 15px;
+        color: #B8C8E4;
+        font-size: 12px;
+    }
+
+    .visual-classes {
+        display: flex;
+        gap: 7px;
+    }
+
+    .visual-class {
+        background: #213A5F;
+        color: #E1EAFF;
+        border: 1px solid #476499;
+        border-radius: 7px;
+        padding: 5px 9px;
+        font-size: 11px;
+    }
+
+    .visual-note {
+        margin-top: 10px;
+        font-size: 10px;
+        color: #90A7CF;
+        line-height: 1.5;
     }
 
     /* Títulos y paneles */
@@ -329,6 +474,12 @@ st.markdown("""
         border-radius: 10px;
     }
 
+    /* Encabezado adaptable a dispositivos pequeños */
+    @media (max-width: 900px) {
+        .hero-grid { grid-template-columns: 1fr; }
+        .hero-visual { max-width: 480px; width: 100%; }
+    }
+
     /* Adaptación a pantallas pequeñas */
     @media (max-width: 700px) {
         .block-container {
@@ -433,36 +584,61 @@ def analizar_imagen(imagen):
 
 st.markdown("""
 <div class="brand">
-    <div class="brand-icon">◉</div>
+    <div class="brand-icon">◎</div>
     <div>
-        <div class="brand-name">
-            IA DETECT<span> 2026</span>
-        </div>
-        <div class="brand-subtitle">
-            IMAGE INTELLIGENCE
-        </div>
+        <div class="brand-name">DeepDetect<span> 2026</span></div>
+        <div class="brand-subtitle">ANÁLISIS DE IMÁGENES FACIALES</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
 <div class="hero">
-    <div class="eyebrow">
-        INTELLIGENT IMAGE DETECTION
+    <div class="hero-grid">
+        <div>
+            <div class="eyebrow">DETECCIÓN DE IMÁGENES GENERADAS POR IA</div>
+            <div class="hero-title">
+                ¿Es una fotografía real o generada por IA?
+            </div>
+            <div class="hero-description">
+                Sube una imagen facial y revisa cómo la clasifica nuestro
+                modelo ResNet-50. Podrás ver la puntuación de cada clase y
+                obtener recomendaciones para comprobar su procedencia.
+                El resultado es orientativo, no una prueba de autenticidad.
+            </div>
+            <span class="tag">Imágenes faciales</span>
+            <span class="tag">ResNet-50</span>
+            <span class="tag">Real / Fake</span>
+            <span class="tag">Gemini</span>
+        </div>
+        <div class="hero-visual" aria-label="Ilustración de un rostro y las categorías real y fake">
+            <div class="visual-top">
+                <span>Vista de análisis</span>
+                <strong>DEEPDETECT / 2026</strong>
+            </div>
+            <div class="face-frame">
+                <span class="frame-corner corner-tl"></span>
+                <span class="frame-corner corner-tr"></span>
+                <span class="frame-corner corner-bl"></span>
+                <span class="frame-corner corner-br"></span>
+                <div class="face-illustration">
+                    <div class="face-head"></div>
+                    <div class="face-shoulders"></div>
+                </div>
+                <div class="scan-line"></div>
+            </div>
+            <div class="visual-bottom">
+                <span>Clasificación binaria</span>
+                <div class="visual-classes">
+                    <span class="visual-class">REAL</span>
+                    <span class="visual-class">FAKE</span>
+                </div>
+            </div>
+            <div class="visual-note">
+                Ilustración de la interfaz; no corresponde a una predicción.
+            </div>
+        </div>
     </div>
-    <div class="hero-title">
-        La verdad detrás de cada imagen.
-    </div>
-    <div class="hero-description">
-        Analiza imágenes mediante aprendizaje profundo,
-        identifica señales asociadas a contenido generado
-        por inteligencia artificial y conoce cómo
-        interpretar los resultados.
-    </div>
-    <span class="tag">ResNet-50</span>
-    <span class="tag">Deep Learning</span>
-    <span class="tag">Visión computacional</span>
-    <span class="tag">IA generativa</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -473,13 +649,13 @@ st.markdown("""
 
 st.markdown(
     '<div class="section-heading">'
-    '<span>01 /</span> Analiza una imagen'
+    '<span>01 /</span> Cargar imagen'
     '</div>',
     unsafe_allow_html=True,
 )
 
 imagen_subida = st.file_uploader(
-    "Selecciona una fotografía para comenzar el análisis",
+    "Selecciona una fotografía facial para analizar",
     type=["jpg", "jpeg", "png", "webp"],
 )
 
@@ -498,7 +674,7 @@ if imagen_subida is not None:
     with col_imagen:
         st.markdown(
             '<div class="section-heading">'
-            '<span>02 /</span> Imagen analizada'
+            '<span>02 /</span> Vista previa'
             '</div>',
             unsafe_allow_html=True,
         )
@@ -512,7 +688,7 @@ if imagen_subida is not None:
     with col_resultado:
         st.markdown(
             '<div class="section-heading">'
-            '<span>03 /</span> Diagnóstico'
+            '<span>03 /</span> Resultado del análisis'
             '</div>',
             unsafe_allow_html=True,
         )
@@ -565,16 +741,17 @@ if imagen_subida is not None:
             unsafe_allow_html=True,
         )
 
-        # Advertencia cerca del umbral de decisión
-        distancia_umbral = abs(
-            p_real - config["threshold_real"]
-        )
+        # Advertir si la decisión está cerca del umbral o la clase
+        # asignada tiene una puntuación baja (sin calibración).
+        cerca_umbral = abs(p_real - config["threshold_real"]) < 0.10
+        puntuacion_baja = puntuacion < 0.60
+        resultado_incierto = cerca_umbral or puntuacion_baja
 
-        if distancia_umbral < 0.10:
+        if resultado_incierto:
             st.warning(
-                "El resultado está cerca del umbral de "
-                "clasificación. Se recomienda una revisión "
-                "humana y contrastar otras fuentes."
+                "La clasificación requiere cautela: la puntuación "
+                "es baja o está cerca del umbral de decisión. "
+                "Contrasta la fuente y considera una revisión humana."
             )
 
         st.markdown(
@@ -590,12 +767,12 @@ else:
     st.markdown(
         '<div class="panel">'
         '<p style="font-size:20px; margin-bottom:7px;">'
-        '◌ Tu análisis comienza aquí'
+        '◎ Elige una imagen para empezar'
         '</p>'
         '<p class="fine-print">'
-        'Sube una fotografía para visualizar su '
-        'clasificación, las puntuaciones de ambas clases '
-        'y una interpretación responsable del resultado.'
+        'Sube una fotografía de una persona para ver la '
+        'clasificación, ambas puntuaciones y las '
+        'recomendaciones de verificación.'
         '</p>'
         '</div>',
         unsafe_allow_html=True,
@@ -608,7 +785,7 @@ else:
 
 st.markdown(
     '<div class="section-heading">'
-    '<span>04 /</span> AI Insights'
+    '<span>04 /</span> Recomendaciones con IA'
     '</div>',
     unsafe_allow_html=True,
 )
@@ -617,12 +794,11 @@ st.markdown(
     '<div class="panel-small">'
     '<div style="font-size:20px; font-weight:750; '
     'color:#F4F7FF; margin-bottom:8px;">'
-    '✨ Asistente de verificación'
+    'Recomendaciones para verificar la imagen'
     '</div>'
     '<p style="color:#B6C5DF; font-size:14px;">'
-    'Obtén recomendaciones personalizadas para interpretar '
-    'el resultado y verificar la procedencia de una imagen '
-    'mediante inteligencia artificial generativa.'
+    'Consulta sugerencias para interpretar el resultado y '
+    'revisar la procedencia de la imagen.'
     '</p>'
     '</div>',
     unsafe_allow_html=True,
@@ -684,15 +860,16 @@ else:
                 else "posiblemente generada por IA"
             )
 
-            cerca_umbral = (
-                abs(p_real - config["threshold_real"]) < 0.10
-            )
+            cerca_umbral = abs(p_real - config["threshold_real"]) < 0.10
+            puntuacion_baja = (
+                p_real if clase == "real" else p_fake
+            ) < 0.60
 
             prompt = f"""
             Actúa como asistente educativo especializado
             en verificación de imágenes digitales.
 
-            Una aplicación llamada IA Detect 2026
+            Una aplicación llamada DeepDetect 2026
             analizó una imagen mediante ResNet-50.
 
             RESULTADOS:
@@ -702,6 +879,7 @@ else:
             - Umbral para clasificar como real:
               {config["threshold_real"]:.0%}
             - ¿Cerca del umbral?: {cerca_umbral}
+            - ¿Puntuación baja para la clase asignada?: {puntuacion_baja}
 
             IMPORTANTE:
             No estás viendo la imagen original.
@@ -727,8 +905,8 @@ else:
             - Segunda acción concreta.
             - Tercera acción concreta.
 
-            Si el resultado está cerca del umbral,
-            recomienda revisión humana.
+            Si está cerca del umbral o la puntuación asignada
+            es baja, recomienda revisión humana.
 
             No escribas introducciones, conclusiones
             ni títulos adicionales.
@@ -777,8 +955,7 @@ else:
             )
 
             st.caption(
-                "Recomendaciones personalizadas según "
-                "el resultado de IA Detect 2026."
+                "Sugerencias basadas en la clasificación de DeepDetect 2026."
             )
 
             st.markdown(
@@ -878,7 +1055,7 @@ st.markdown(
     '<div style="border-top:1px solid #263858; '
     'padding-top:22px; margin-top:35px; '
     'text-align:center; color:#8092B1; font-size:12px;">'
-    'IA Detect 2026 · Proyecto académico de clasificación '
+    'DeepDetect 2026 · Proyecto académico de clasificación '
     'de imágenes mediante inteligencia artificial'
     '</div>',
     unsafe_allow_html=True,
